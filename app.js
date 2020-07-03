@@ -1,10 +1,35 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const port = 3000;
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+const Estudiantes = [
+{
+  nombre: "Naylea Trigueros",
+  edad: 21,
+},
+{
+  nombre:"Carlos Perez",
+  edad: 25,
+}
+
+];
+
+//interm
+app.use(bodyParser.json());
+
+
+app.get('/', (req, res)=> {
+  res.json(Estudiantes);
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.get('/estudiantes/:indice',(req, res) => {
+  res.json(Estudiantes[req.params.indice]);
 });
+
+app.post('/estudiantes/',(req,res) => {
+  Estudiantes.push(req.body);
+  res.json(req.body);
+});
+
+app.listen(port, ()=> console.log(`Example app listening at http://localhost:${port}`));
