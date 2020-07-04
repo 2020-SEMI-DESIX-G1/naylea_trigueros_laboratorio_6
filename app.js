@@ -33,12 +33,14 @@ app.post('/api/estudiantes/',(req, res) => {
 });
 
 app.put('/api/estudiantes/:indice',(req, res) => {
-  res.json(Estudiantes[1,req.params.indice]);
-  res.send(Estudiantes )
+  res.json(Estudiantes[req.params.indice]);
+  
 });
 
 app.delete('/api/estudiantes/:indice',(req, res) => {
-  res.json(Estudiantes.splice(req.params.indice));
+  res.json(Estudiantes.splice(1,req.params.indice));
+  res.send(Estudiantes )
 });
+
 
 app.listen(port, ()=> console.log(`Example app listening at http://localhost:${port}`));
