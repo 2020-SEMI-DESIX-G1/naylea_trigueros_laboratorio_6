@@ -19,17 +19,26 @@ const Estudiantes = [
 app.use(bodyParser.json());
 
 
-app.get('/', (req, res)=> {
+app.get('/api/estudiantes/', (req, res)=> {
   res.json(Estudiantes);
 });
 
-app.get('/estudiantes/:indice',(req, res) => {
+app.get('/api/estudiantes/:indice',(req, res) => {
   res.json(Estudiantes[req.params.indice]);
 });
 
-app.post('/estudiantes/',(req,res) => {
+app.post('/api/estudiantes/',(req, res) => {
   Estudiantes.push(req.body);
   res.json(req.body);
+});
+
+app.put('/api/estudiantes/:indice',(req, res) => {
+  res.json(Estudiantes[1,req.params.indice]);
+  res.send(Estudiantes )
+});
+
+app.delete('/api/estudiantes/:indice',(req, res) => {
+  res.json(Estudiantes.splice(req.params.indice));
 });
 
 app.listen(port, ()=> console.log(`Example app listening at http://localhost:${port}`));
